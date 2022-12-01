@@ -1,18 +1,14 @@
 import styled from "styled-components";
+import { AiOutlineCloseCircle } from "react-icons/ai";
 
-export default function Card({ onEntry }) {
+export default function Card({ id, text, author, onDelete }) {
   return (
     <>
-      {onEntry.map((entry) => {
-        return (
-          <>
-            <StyledEntry>
-              <StyledText>{entry.text}</StyledText>
-              <StyledAuthor>Author: {entry.author}</StyledAuthor>
-            </StyledEntry>
-          </>
-        );
-      })}
+      <StyledEntry>
+        <StyledText>{text}</StyledText>
+        <StyledAuthor>Author: {author}</StyledAuthor>
+        <AiOutlineCloseCircle size={20} onClick={() => onDelete(id)} />
+      </StyledEntry>
     </>
   );
 }
@@ -22,6 +18,7 @@ const StyledEntry = styled.section`
   margin: 10px;
   padding: 10px;
   border-radius: 10px;
+  filter: drop-shadow(2px 2px 5px black);
 `;
 
 const StyledAuthor = styled.p`

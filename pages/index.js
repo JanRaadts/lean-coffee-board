@@ -12,11 +12,25 @@ export default function HomePage() {
     setEntrys([...entrys, data]);
   }
 
+  function handleDelete(id) {
+    setEntrys(entrys.filter((entry) => entry.id !== id));
+  }
+
   return (
     <>
       <GlobalStyles />
       <Header />
-      <Card onEntry={entrys} />
+      {entrys.map((entry) => {
+        return (
+          <Card
+            key={entry.id}
+            id={entry.id}
+            text={entry.text}
+            author={entry.author}
+            onDelete={handleDelete}
+          />
+        );
+      })}
       <Form entryData={handleNewEntry} />
     </>
   );
