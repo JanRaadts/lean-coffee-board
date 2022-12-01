@@ -16,6 +16,20 @@ export default function HomePage() {
     setEntrys(entrys.filter((entry) => entry.id !== id));
   }
 
+  function handleChangedData(data) {
+    console.log(data);
+
+    setEntrys(
+      entrys.map((entry) => {
+        if (entry.id == data.id) {
+          return data;
+        } else {
+          return entry;
+        }
+      })
+    );
+  }
+
   return (
     <>
       <GlobalStyles />
@@ -28,6 +42,7 @@ export default function HomePage() {
             text={entry.text}
             author={entry.author}
             onDelete={handleDelete}
+            changedData={handleChangedData}
           />
         );
       })}
