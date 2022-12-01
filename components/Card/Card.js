@@ -1,14 +1,56 @@
+import { use, useState } from "react";
 import styled from "styled-components";
 import { AiOutlineCloseCircle } from "react-icons/ai";
+import { AiFillEdit } from "react-icons/ai";
 
-export default function Card({ id, text, author, onDelete }) {
+export default function Card({ id, text, author, onDelete, changedData }) {
+  const [inEdit, setInEdite] = useState(false);
+  console.log(inEdit);
+
+  function handleEdit() {
+    setInEdite(true);
+  }
+
+  function saveEdit(event) {
+    event.preventDefault();
+    let inputData = {
+      id: id,
+      text: event.target.elements.varText.value,
+      author: event.target.elements.author.value,
+    };
+    event.target.reset();
+    event.target.elements.varText.focus();
+    changedData(inputData);
+    setInEdite(false);
+  }
   return (
     <>
-      <StyledEntry>
-        <StyledText>{text}</StyledText>
-        <StyledAuthor>Author: {author}</StyledAuthor>
-        <AiOutlineCloseCircle size={20} onClick={() => onDelete(id)} />
-      </StyledEntry>
+      {inEdit == false ? (
+        <StyledEntry>
+          <StyledText>{text}</StyledText>
+          <StyledAuthor>Author: {author}</StyledAuthor>
+          <AiOutlineCloseCircle size={20} onClick={() => onDelete(id)} />
+          <AiFillEdit size={20} onClick={handleEdit} />
+        </StyledEntry>
+      ) : (
+        <StyledEntry>
+          <form onSubmit={saveEdit}>
+            <input
+              type="text"
+              name="varText"
+              placeholder="Type your thoughts..."
+              required
+            ></input>
+            <input
+              type="text"
+              name="author"
+              placeholder="Your Name"
+              required
+            ></input>
+            <button type="submit">Ändern</button>
+          </form>
+        </StyledEntry>
+      )}
     </>
   );
 }
