@@ -1,11 +1,10 @@
-import { use, useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { AiFillEdit } from "react-icons/ai";
 
 export default function Card({ id, text, author, onDelete, changedData }) {
   const [inEdit, setInEdite] = useState(false);
-  console.log(inEdit);
 
   function handleEdit() {
     setInEdite(true);
@@ -23,6 +22,7 @@ export default function Card({ id, text, author, onDelete, changedData }) {
     changedData(inputData);
     setInEdite(false);
   }
+
   return (
     <>
       {inEdit == false ? (
@@ -47,7 +47,7 @@ export default function Card({ id, text, author, onDelete, changedData }) {
               placeholder="Your Name"
               required
             ></input>
-            <button type="submit">Ändern</button>
+            <button type="submit">Change</button>
           </form>
         </StyledEntry>
       )}

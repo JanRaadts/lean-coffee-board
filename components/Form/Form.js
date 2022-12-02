@@ -9,7 +9,7 @@ export default function Form({ entryData }) {
     let inputData = {
       id: nanoid(),
       text: event.target.elements.varText.value,
-      author: event.target.elements.author.value,
+      name: event.target.elements.author.value,
     };
     event.target.reset();
     event.target.elements.varText.focus();
@@ -41,7 +41,7 @@ export default function Form({ entryData }) {
 }
 
 const StyledForm = styled.form`
-  position: absolute;
+  position: fixed;
   bottom: 0;
   background-color: white;
   width: 100%;
