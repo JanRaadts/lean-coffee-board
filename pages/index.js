@@ -23,7 +23,7 @@ export default function HomePage() {
   }
 
   async function handleDelete(id) {
-    // setEntrys(entrys.filter((entry) => entry.id !== id));
+    setEntrys(entrys.filter((entry) => entry.id !== id));
     await fetch(
       "https://lean-coffee-board-api-nextjs.vercel.app/api/questions/" + id,
       {
