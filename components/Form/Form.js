@@ -47,6 +47,7 @@ const StyledForm = styled.form`
   width: 100%;
   display: flex;
   justify-content: center;
+  border-top: 4px #0084b2 solid;
 `;
 
 const StyledInputText = styled.input`
